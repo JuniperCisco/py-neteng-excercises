@@ -26,3 +26,12 @@ this stage it is difficult otherwise test the result.
 """
 
 ip = "192.168.3.1"
+oct1 = int(ip.split('.')[0])
+oct2 = int(ip.split('.')[1])
+oct3 = int(ip.split('.')[2])
+oct4 = int(ip.split('.')[3])
+decibin = f'''
+{oct1:<8}  {oct2:<8}  {oct3:<8}  {oct4:<8}
+{oct1:08b}  {oct2:08b}  {oct3:08b}  {oct4:08b}
+'''
+print(decibin)

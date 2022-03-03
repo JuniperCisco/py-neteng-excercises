@@ -16,3 +16,9 @@ this stage it is difficult otherwise test the result.
 """
 
 mac = "AAAA:BBBB:CCCC"
+m1 = mac.split(':')
+m11 = int(m1[0], 16)
+m12 = int(m1[1], 16)
+m13 = int(m1[2], 16)
+m2 = f'{m11:b}{m12:b}{m13:b}'
+print(m2)

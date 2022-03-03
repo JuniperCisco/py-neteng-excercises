@@ -22,3 +22,8 @@ this stage it is difficult otherwise test the result.
 
 command1 = "switchport trunk allowed vlan 1,2,3,5,8"
 command2 = "switchport trunk allowed vlan 1,3,8,9"
+c3 = set(command1.split()[-1].split(','))
+c4 = set(command2.split()[-1].split(','))
+c5 = list(c3 & c4)
+result = sorted(c5)
+print(result)

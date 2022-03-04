@@ -33,5 +33,6 @@ Thumbs.db
 
 # Some directories
 
+/scripts
 /build
 /pyneng.egg-info

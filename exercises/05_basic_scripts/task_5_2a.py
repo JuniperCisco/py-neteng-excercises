@@ -41,3 +41,39 @@ Then the network address will be the first 28 characters from bin_ip + 0000
 Restriction: All tasks must be done using the topics covered in this and previous chapters.
 
 """
+ip = input('Please, enter IP and Mask in CIDR notation: ')
+iplist = ip.split('/')
+ip_cidr = iplist[0].split('.')
+mask_cidr = int(iplist[1])
+mask_bin = '1' * mask_cidr + '0' * (32-mask_cidr)
+mask_oct1, mask_oct2, mask_oct3, mask_oct4 = [
+    int(mask_bin[:8], 2),
+    int(mask_bin[8:16], 2),
+    int(mask_bin[16:24], 2),
+    int(mask_bin[24:], 2)
+    ]
+
+oct1, oct2, oct3, oct4 = [
+    int(ip_cidr[0]),
+    int(ip_cidr[1]),
+    int(ip_cidr[2]),
+    int(ip_cidr[3])
+]
+
+ip_bin = '{:08b}{:08b}{:08b}{:08b}'.format(oct1, oct2, oct3, oct4)
+network_bin = ip_bin[:mask_cidr] + '0' * (32-mask_cidr)
+
+net1, net2, net3, net4 = [
+    int(network_bin[:8], 2),
+    int(network_bin[8:16], 2),
+    int(network_bin[16:24], 2),
+    int(network_bin[24:], 2)
+]
+
+
+print(f'Network:\n'
+      f'{net1:<8}  {net2:<8}  {net3:<8}  {net4:<8}\n'
+      f'{net1:08b}  {net2:08b}  {net3:08b}  {net4:08b}\n\n'
+      f'Mask:\n/{mask_cidr}\n'
+      f'{mask_oct1:<8}  {mask_oct2:<8}  {mask_oct3:<8}  {mask_oct4:<8}\n'
+      f'{mask_oct1:08b}  {mask_oct2:08b}  {mask_oct3:08b}  {mask_oct4:08b}\n')

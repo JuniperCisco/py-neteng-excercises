@@ -17,3 +17,16 @@ even if several points above are not met.
 
 Restriction: All tasks must be done using the topics covered in this and previous chapters.
 """
+'''
+ip = input('Please, enter an IP address: ')
+if ip == '0.0.0.0':
+    print('unassigned')
+elif ip == '255.255.255.255':
+    print('local broadcast')
+elif int(ip.split('.')[0]) <= 223:
+    print('unicast')
+elif int(ip.split('.')[0]) <= 239:
+    print('multicast')
+else:
+    print ('unused')
+'''

@@ -17,9 +17,9 @@ if ip == '0.0.0.0':
     print('unassigned')
 elif ip == '255.255.255.255':
     print('local broadcast')
-elif int(ip.split('.')[0]) <= 223:
+elif 1 <= int(ip.split('.')[0]) <= 223:
     print('unicast')
-elif int(ip.split('.')[0]) <= 239:
+elif 224 <= int(ip.split('.')[0]) <= 239:
     print('multicast')
 else:
     print ('unused')

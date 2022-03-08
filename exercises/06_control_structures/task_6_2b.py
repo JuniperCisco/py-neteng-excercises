@@ -20,7 +20,8 @@ while True:
         valid_ip = i.isdigit() and 0 <= int(i) <= 255 and valid_ip
     if valid_ip:
         break
-    print('Invalid IP address.')
+    else:
+        print('Invalid IP address.')
 
 if valid_ip:
     if ip == '0.0.0.0':

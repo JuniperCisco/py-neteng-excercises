@@ -38,16 +38,13 @@ interface Ethernet0/3
  switchport mode trunk
  spanning-tree portfast edge trunk
 ...
-
 """
-
-'''Why are we using sys.argv???'''
 
 from sys import argv
 
-filename = argv[0]
+filename = argv[1]
 
-with open('config_sw1.txt') as f:
+with open(filename) as f:
     for line in f:
-        if not line.startswith('!'):
+        if not line.startswith("!"):
             print(line.rstrip())

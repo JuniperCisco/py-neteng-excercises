@@ -40,3 +40,14 @@ interface Ethernet0/3
 ...
 
 """
+
+'''Why are we using sys.argv???'''
+
+from sys import argv
+
+filename = argv[0]
+
+with open('config_sw1.txt') as f:
+    for line in f:
+        if not line.startswith('!'):
+            print(line.rstrip())

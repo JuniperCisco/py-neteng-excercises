@@ -27,7 +27,6 @@ with open("CAM_table.txt") as conf:
             vlan, mac, _, intf = words
             mac_table.append([int(vlan), mac, intf])
 
-
 for vlan, mac, interface in sorted(mac_table):
     print(f"{vlan:<9}{mac:20}{intf}")
 

@@ -38,5 +38,13 @@ interface Ethernet0/3
  switchport mode trunk
  spanning-tree portfast edge trunk
 ...
-
 """
+
+from sys import argv
+
+filename = argv[1]
+
+with open(filename) as f:
+    for line in f:
+        if not line.startswith("!"):
+            print(line.rstrip())

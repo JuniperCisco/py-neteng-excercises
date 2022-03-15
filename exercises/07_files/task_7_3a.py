@@ -40,3 +40,36 @@ if you sort list of lists above.
 Restriction: All tasks must be done using the topics covered in this and previous chapters.
 
 """
+
+
+mac_table = []
+
+with open("CAM_table.txt") as conf:
+    for line in conf:
+        words = line.split()
+        if words and words[0].isdigit():
+            vlan, mac, _, interface = words
+            mac_table.append([int(vlan), mac, interface])
+
+for vlan, mac, interface in sorted(mac_table):
+    print(f"{vlan:<9}{mac:20}{interface}")
+
+
+'''
+My own solution (imperfect, columns not aligned properly)
+
+mac_list = []
+
+with open('CAM_table.txt') as f:
+    for line in f:
+        if '.' in line:
+            mac_list.append(line.replace('DYNAMIC', '').rstrip().split())
+            for i in mac_list:
+                i[0] = int(i[0])
+            mac_list = sorted(mac_list)
+            for i in mac_list:
+                i[0] = str(i[0])
+                print(' '.join(i))
+
+
+'''

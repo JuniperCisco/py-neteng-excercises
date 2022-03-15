@@ -20,3 +20,23 @@ the following table was printed on the stdout:
 Restriction: All tasks must be done using the topics covered in this and previous chapters.
 
 """
+
+'''
+@natenka solution
+'''
+with open("CAM_table.txt") as conf:
+    for line in conf:
+        words = line.split()
+        if words and words[0].isdigit():
+            vlan, mac, _, interface = words
+            print(f"{vlan:9}{mac:20}{interface}")
+
+'''
+My own solution:
+
+
+with open('CAM_table.txt') as f:
+    for line in f:
+        if '.' in line:
+            print(line.replace('DYNAMIC', '').rstrip())
+'''

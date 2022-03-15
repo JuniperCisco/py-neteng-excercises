@@ -48,11 +48,11 @@ with open("CAM_table.txt") as conf:
     for line in conf:
         words = line.split()
         if words and words[0].isdigit():
-            vlan, mac, _, interface = words
-            mac_table.append([int(vlan), mac, interface])
+            vlan, mac, _, intf = words
+            mac_table.append([int(vlan), mac, intf])
 
 for vlan, mac, interface in sorted(mac_table):
-    print(f"{vlan:<9}{mac:20}{interface}")
+    print(f"{vlan:<9}{mac:20}{intf}")
 
 
 '''

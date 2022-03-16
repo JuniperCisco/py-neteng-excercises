@@ -16,4 +16,19 @@ Restriction: All tasks must be done using the topics covered in this and previou
 
 """
 
+from sys import argv
+
 ignore = ["duplex", "alias", "configuration"]
+
+filename = argv[1]
+flag = True
+
+with open(filename) as f:
+    for line in f:
+        words = line.split()
+        intersect = set(words) & set(ignore)
+        if not line.startswith("!") and not intersect:
+            print(line.rstrip())
+
+
+

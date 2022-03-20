@@ -31,5 +31,3 @@ with open(src_file) as s, open(dst_file, 'w') as d:
         if not line.startswith("!") and not intersect:
             d.write(line)
 
-
-

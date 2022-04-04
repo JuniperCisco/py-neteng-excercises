@@ -74,6 +74,8 @@ Do not copy the code of the create_network_map and draw_topology functions.
 Restriction: All tasks must be done using the topics covered in this and previous chapters.
 
 """
+from draw_network_graph import draw_topology as dt
+from task_11_2 import create_network_map as cnm
 
 infiles = [
     "sh_cdp_n_sw1.txt",
@@ -81,3 +83,18 @@ infiles = [
     "sh_cdp_n_r2.txt",
     "sh_cdp_n_r3.txt",
 ]
+
+
+#dt(cnm(infiles))
+
+
+def unique_network_map(topology_dict):
+    new_topology = {}
+    for key, value in topology_dict.items():
+        if not new_topology.get(value) == key:
+            new_topology[key] = value
+    return new_topology
+
+
+final_topology = unique_network_map(cnm(infiles))
+dt(final_topology)

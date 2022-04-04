@@ -27,6 +27,9 @@ command output files, you need to correct the function code in task 11.1.
 Restriction: All tasks must be done using the topics covered in this and previous chapters.
 
 """
+
+from task_11_1 import parse_cdp_neighbors as pcn
+
 infiles = [
     "sh_cdp_n_sw1.txt",
     "sh_cdp_n_r1.txt",
@@ -36,6 +39,15 @@ infiles = [
 
 
 def create_network_map(filenames):
+    netmap = {}
+    for i in filenames:
+        with open(i) as f:
+            parsed = pcn(f.read())
+            netmap.update(parsed)
+    return netmap
+
+
+'''def create_network_map(filenames):
     result = {}
     for i in filenames:
         with open(i) as f:
@@ -47,9 +59,9 @@ def create_network_map(filenames):
                 elif len(columns) > 5 and columns[3].isdigit():
                     peer_name, local_port, local_portnum, *other, peer_port, peer_portnum = columns
                     result[(hostname,local_port+local_portnum)] = (peer_name, peer_port+peer_portnum)
-    return result
+    return result'''
 
 
-#a = create_network_map(infiles)
+a = create_network_map(infiles)
 
-#print(a)
+print(a)

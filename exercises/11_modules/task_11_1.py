@@ -14,7 +14,7 @@ The function should return a dictionary that describes the connections between d
 
 
 For example, if the following output was passed as an argument:
-R4>show cdp neighbors
+R4#show cdp neighbors
 
 Device ID    Local Intrfce   Holdtme     Capability       Platform    Port ID
 R5           Fa 0/1          122           R S I           2811       Fa 0/1
@@ -44,8 +44,19 @@ def parse_cdp_neighbors(command_output):
     both with files and with output from equipment.
     Plus, we learn to work with such a output.
     """
+    result = {}
+    for line in command_output.split("\n"):
+        line = line.strip()
+        columns = line.split()
+        if '>' in line:
+            hostname = line.split('>')[0]
+        elif len(columns) > 5 and columns[3].isdigit():
+            peer_name, local_int, local_intnum, *x, peer_int, peer_intnum = columns
+            result[(hostname, local_int + local_intnum)] = (peer_name, peer_int + peer_intnum)
+    return result
 
 
 if __name__ == "__main__":
     with open("sh_cdp_n_sw1.txt") as f:
         print(parse_cdp_neighbors(f.read()))
+

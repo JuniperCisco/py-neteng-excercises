@@ -33,3 +33,23 @@ infiles = [
     "sh_cdp_n_r2.txt",
     "sh_cdp_n_r3.txt",
 ]
+
+
+def create_network_map(filenames):
+    result = {}
+    for i in filenames:
+        with open(i) as f:
+            for line in f:
+                line = line.strip()
+                columns = line.split()
+                if ">" in line:
+                    hostname = line.split(">")[0]
+                elif len(columns) > 5 and columns[3].isdigit():
+                    peer_name, local_port, local_portnum, *other, peer_port, peer_portnum = columns
+                    result[(hostname,local_port+local_portnum)] = (peer_name, peer_port+peer_portnum)
+    return result
+
+
+#a = create_network_map(infiles)
+
+#print(a)

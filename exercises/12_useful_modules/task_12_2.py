@@ -38,15 +38,15 @@ The function should return a list like this:
 def convert_ranges_to_ip_list(ip_range):
     final_ip_list = []
     for ip in ip_range:
-        conv_ip = ip.split('-')
+        two_ips = ip.split('-')
         if '-' in ip:
-            octets = conv_ip[0].split('.')
-            if '.' not in conv_ip[1]:
-                last_octet = conv_ip.pop(-1)
+            octets = two_ips[0].split('.')
+            if '.' not in two_ips[1]:
+                last_octet = two_ips.pop(-1)
                 for i in range(int(octets[3]), (int(last_octet)+1)):
                     final_ip_list.append(f'{octets[0]}.{octets[1]}.{octets[2]}.{i}')
             else:
-                last_octet = conv_ip[-1].split('.').pop(-1)
+                last_octet = two_ips[-1].split('.').pop(-1)
                 for i in range(int(octets[3]), (int(last_octet) + 1)):
                     final_ip_list.append(f'{octets[0]}.{octets[1]}.{octets[2]}.{i}')
         else:
@@ -54,5 +54,5 @@ def convert_ranges_to_ip_list(ip_range):
     return final_ip_list
 
 
-#a = convert_ranges_to_ip_list(['1.1.1.1', '10.0.0.0-2', '2.2.2.2', '10.1.1.0-10.1.1.3'])
+#a = convert_ranges_to_ip_list(['172.15.1.0-4', '10.0.0.0', '2.2.2.2', '10.1.1.5-10.1.1.37'])
 #print(a)

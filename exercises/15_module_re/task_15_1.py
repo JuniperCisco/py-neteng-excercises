@@ -22,3 +22,42 @@ of the IP address, address ranges, and so on, since the command
 output from network device is processed, not user input.
 
 """
+
+
+###
+# Not the most elegant solution but it works, lol :D
+###
+
+import re
+
+
+def get_ip_from_cfg(filename):
+    result = []
+    with open(filename) as f:
+        try:
+            for line in f:
+                if 'ip address ' in line:
+                    ip_mask = re.search("ip address (\S+) (\S+)", line).groups()
+                    result.append(ip_mask)
+                else:
+                    pass
+        except AttributeError:
+            pass
+    return result
+
+
+if __name__ == '__main__':
+    print(get_ip_from_cfg('config_r1.txt'))
+
+###
+# More elegant one
+###
+
+'''import re
+
+
+def get_ip_from_cfg(config):
+    regex = r"ip address (\S+) (\S+)"
+    with open(config) as f:
+        result = [m.groups() for m in re.finditer(regex, f.read())]
+    return result'''
